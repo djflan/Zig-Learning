@@ -2,6 +2,8 @@ My personal learning repository for the Zig language.
 Initially targeting Zig 0.15.2.
 
 Prerequisites:
+- [VS Code](https://code.visualstudio.com/download)
+  - In case anyone doesn't already have it. 
 - [Install Zig](https://ziglang.org/learn/getting-started/#managers)
   - Yup 
 - [PowerShell Core](https://learn.microsoft.com/en-us/powershell/scripting/install/install-powershell?view=powershell-7.5)
