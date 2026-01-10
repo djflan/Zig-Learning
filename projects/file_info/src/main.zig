@@ -1,10 +1,20 @@
-const std = @import("std");
 const file_info = @import("file_info");
+const std = file_info.std;
 
 pub fn main() !void {
-    // Prints to stderr, ignoring potential errors.
-    std.debug.print("All your {s} are belong to us.\n", .{"codebase"});
-    try file_info.bufferedPrint();
+    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    defer _ = gpa.deinit();
+
+    const allocator = gpa.allocator();
+
+    const args = try std.process.argsAlloc(allocator);
+    defer std.process.argsFree(allocator, args);
+
+    const out = try std.fs.File.stdout().write();
+
+    for (args) |arg| {
+        try out.print("Argument: {s}\n", .{arg});
+    }
 }
 
 test "simple test" {
